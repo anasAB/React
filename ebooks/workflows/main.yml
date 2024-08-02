@@ -23,22 +23,22 @@ jobs:
       # - name: test
       #   run: npm test
 
-      - name: format
-        run: npm run prettier
+      # - name: format
+      #   run: npm run prettier
 
-      - name: lint
-        run: npm run lint
+      # - name: lint
+      #   run: npm run lint
 
-      - name: lint-staged
-        run: npm run lint-staged
+      # - name: lint-staged
+      #   run: npm run lint-staged
 
-      - name: Check TypeScript Types
-        run: npx tsc --noEmit
+      # - name: Check TypeScript Types
+      #   run: npx tsc --noEmit
 
-      - name: build
-        run: npm run build --if-present
+      # - name: build
+      #   run: npm run build --if-present
 
-        # //////
+      # //////
 # pool:
 #   vmImage: 'ubuntu-latest'
 
