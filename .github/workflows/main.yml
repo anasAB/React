@@ -1,40 +1,79 @@
 name: React App CI
 # Controls when the action will run.
 on:
-    # Triggers the workflow on push or pull request events but only for the master branch
-    push:
-        branches: '*'
-    pull_request:
-        branches: '*'
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: "*"
+  pull_request:
+    branches: "*"
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-    react-app-workflow:
-        # The type of runner that the job will run on
-        runs-on: ubuntu-latest
-        # Steps represent a sequence of tasks that will be executed as part of the job
-        steps:
-            - uses: actions/checkout@v2
-            - name: Use Node.js 14.x
-              uses: actions/setup-node@v2
-              with:
-                  node-version: 14.x
-            # - name: npm ci
-            #   run: npm ci
-              
-            # - name: test
-            #   run: npm test
-              
-            - name: format
-              run: npm run prettier
-              
-            - name: lint
-              run: npm run lint
+  react-app-workflow:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+      - name: npm install
+        run: npm install
 
-            - name: lint-staged
-              run: npm run lint-staged
-              
-            - name: Check TypeScript Types
-              run: npx tsc --noEmit
-              
-            - name: build
-              run: npm run build --if-present
+      # - name: test
+      #   run: npm test
+
+      - name: format
+        run: npm run prettier
+
+      - name: lint
+        run: npm run lint
+
+      - name: lint-staged
+        run: npm run lint-staged
+
+      - name: Check TypeScript Types
+        run: npx tsc --noEmit
+
+      - name: build
+        run: npm run build --if-present
+
+        # //////
+# pool:
+#   vmImage: 'ubuntu-latest'
+
+# variables:
+#   SourceBranchName: '$(Build.SourceBranchName)'
+
+# stages:
+#   - stage: Build
+#     displayName: 'Build Stage'
+#     jobs:
+#       - job: BuildJob
+#         displayName: 'Build Job'
+#         steps:
+#           - checkout: self
+#             fetchDepth: 0
+
+#           - task: NodeTool@0
+#             inputs:
+#               versionSpec: '14.x'
+#             displayName: 'Install Node.js'
+
+#           - script: |
+#               npm install
+#               npm run format:check
+#               npm run lint --max-warnings=5 || exit 1
+#               npm run type-check
+#             displayName: 'Install dependencies and run checks'
+
+#           - script: |
+#               npm run build
+#             displayName: 'Build the project'
+
+#           - task: PublishBuildArtifacts@1
+#             inputs:
+#               pathtoPublish: 'dist' # Assuming the built assets are in the dist folder
+#               artifactName: 'drop'
+#               publishLocation: 'Container'
