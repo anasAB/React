@@ -31,4 +31,4 @@ jobs:
       - name: Lint Code
         run: npm run lint
       - name: Pre-commit Lint
-        run: npm run lint-staged
+        run: npx lint-staged --config lint-staged.js
