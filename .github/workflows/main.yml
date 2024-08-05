@@ -24,9 +24,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm i
       # - run: npm ci
-      - name: prettier
-        run: npm run prettier
+      - name: format
+        run: npm run format
       - name: lint
         run: npm run lint
-      - name: typescript
-        run: npm run typescript
+      - name: Lint Code
+        run: npm run lint
+      - name: Pre-commit Lint
+        run: npm run lint-staged
