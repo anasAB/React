@@ -29,9 +29,21 @@ module.exports = {
   ],
   overrides: [
     {
-      files: ['main.tsx', 'vite-env.d.ts'],
+      files: ['index.tsx', 'vite-env.d.ts'],
       rules: {
         'filename-rules/match': 'off',
+      },
+    },
+    {
+      files: ['./src/store/*', './src/hooks/*'],
+      rules: {
+        '@typescript-eslint/no-unsafe-assignment': 'off',
+      },
+    },
+    {
+      files: ['./src/store/*', './src/hooks/*'],
+      rules: {
+        'import/no-default-export': 'off',
       },
     },
   ],
@@ -42,6 +54,7 @@ module.exports = {
       { allowConstantExport: true },
     ],
     'react/prefer-stateless-function': 'error',
+    '@typescript-eslint/no-unsafe-assignment': 'error',
     'react/button-has-type': 'error',
     'react/no-unused-prop-types': 'error',
     'react/jsx-pascal-case': 'error',

@@ -1,32 +1,33 @@
-import { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import Icon from '@mui/material/Icon';
+import { Account } from './components/Account';
+import { Admin } from './components/Admin';
+import { Home } from './components/Home';
+import { Landing } from './components/Landing';
+import { Navigation } from './components/Navigation';
+import { PasswordChange } from './components/PasswordChange';
+import { SignInPage } from './components/SignInPage';
+import { SignUpPage } from './components/SignUpPage';
 
 import './App.css';
 
-const App = () => {
-  const [count, setCount] = useState(0);
+const App = () => (
+  <Router>
+    <div>
+      <Navigation />
 
-  return (
-    <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)} type="button">
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <h1 className="text-red-400 text-4xl font-bold underline">
-        Hello world!
-      </h1>
-      <Icon>star</Icon>
-    </>
-  );
-};
+      <hr />
+      <Routes>
+        <Route element={<Landing />} path="/" />
+        <Route element={<SignUpPage />} path="/signup" />
+        <Route element={<SignInPage />} path="/signin" />
+        <Route element={<Admin />} path="/admin" />
+        <Route element={<PasswordChange />} path="/pw-forget" />
+        <Route element={<Home />} path="/home" />
+        <Route element={<Account />} path="/account" />
+      </Routes>
+    </div>
+  </Router>
+);
 
 export { App };
